@@ -8,7 +8,7 @@ import {
 import { z } from 'zod'
 import { parseWithZod } from '@conform-to/zod'
 import { type SubmissionResult } from '@conform-to/react'
-import { requireUser } from '#app/modules/auth/auth.server'
+import { requireUser } from '#app/services/auth/auth.server'
 import { prisma } from '#app/utils/db.server.js'
 import { createToastHeaders } from '#app/utils/toast.server'
 

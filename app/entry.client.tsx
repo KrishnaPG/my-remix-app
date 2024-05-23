@@ -5,7 +5,7 @@ import { startTransition } from 'react'
 import { hydrateRoot } from 'react-dom/client'
 import { I18nextProvider, initReactI18next } from 'react-i18next'
 import { getInitialNamespaces } from 'remix-i18next/client'
-import * as i18n from '#app/modules/i18n/i18n'
+import * as i18n from '#app/services/i18n/i18n'
 
 async function main() {
   await i18next

@@ -1,7 +1,7 @@
 import type { User } from '@prisma/client'
 import { Link, useLocation, useSubmit, useNavigate } from '@remix-run/react'
 import { ChevronUp, ChevronDown, Slash, Check, Settings, LogOut } from 'lucide-react'
-import { PLANS } from '#app/modules/stripe/plans'
+import { PLANS } from '#app/services/stripe/plans'
 import { useRequestInfo } from '#app/utils/hooks/use-request-info'
 import { userHasRole, getUserImgSrc, cn } from '#app/utils/misc'
 import { ROUTE_PATH as LOGOUT_PATH } from '#app/routes/auth+/logout'

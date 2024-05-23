@@ -1,5 +1,5 @@
-import en from '#app/modules/i18n/locales/en'
-import es from '#app/modules/i18n/locales/es'
+import en from '#app/services/i18n/locales/en'
+import es from '#app/services/i18n/locales/es'
 
 // List of languages your application supports.
 export const supportedLngs = ['es', 'en']

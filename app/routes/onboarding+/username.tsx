@@ -13,11 +13,11 @@ import { z } from 'zod'
 import { getZodConstraint, parseWithZod } from '@conform-to/zod'
 import { getFormProps, getInputProps, useForm } from '@conform-to/react'
 import { Loader2 } from 'lucide-react'
-import { requireSessionUser } from '#app/modules/auth/auth.server'
+import { requireSessionUser } from '#app/services/auth/auth.server'
 import {
   createCustomer,
   createFreeSubscription,
-} from '#app/modules/stripe/queries.server'
+} from '#app/services/stripe/queries.server'
 import { prisma } from '#app/utils/db.server'
 import { validateCSRF } from '#app/utils/csrf.server'
 import { checkHoneypot } from '#app/utils/honeypot.server'

@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs } from '@remix-run/node'
 import { Link, Outlet } from '@remix-run/react'
 import { json, redirect } from '@remix-run/node'
-import { authenticator } from '#app/modules/auth/auth.server'
+import { authenticator } from '#app/services/auth/auth.server'
 import { getDomainPathname } from '#app/utils/misc.server'
 import { ROUTE_PATH as HOME_PATH } from '#app/routes/_home+/_layout'
 import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/auth+/login'

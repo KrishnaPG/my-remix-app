@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs } from '@remix-run/node'
 import { Outlet, useLoaderData } from '@remix-run/react'
 import { json, redirect } from '@remix-run/node'
-import { requireUser } from '#app/modules/auth/auth.server'
+import { requireUser } from '#app/services/auth/auth.server'
 import { prisma } from '#app/utils/db.server'
 import { ROUTE_PATH as ONBOARDING_USERNAME_PATH } from '#app/routes/onboarding+/username'
 import { Navigation } from './navigation'

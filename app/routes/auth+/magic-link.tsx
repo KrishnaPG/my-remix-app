@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from '@remix-run/node'
-import { authenticator } from '#app/modules/auth/auth.server'
+import { authenticator } from '#app/services/auth/auth.server'
 
 import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/account+/_layout.js'
 import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/auth+/login'

@@ -3,16 +3,16 @@ import type {
   LoaderFunctionArgs,
   ActionFunctionArgs,
 } from '@remix-run/node'
-import type { Interval, Plan } from '#app/modules/stripe/plans'
+import type { Interval, Plan } from '#app/services/stripe/plans'
 import { useState } from 'react'
 import { Form, useLoaderData } from '@remix-run/react'
 import { json, redirect } from '@remix-run/node'
-import { requireSessionUser } from '#app/modules/auth/auth.server'
-import { PLANS, PRICING_PLANS, INTERVALS, CURRENCIES } from '#app/modules/stripe/plans'
+import { requireSessionUser } from '#app/services/auth/auth.server'
+import { PLANS, PRICING_PLANS, INTERVALS, CURRENCIES } from '#app/services/stripe/plans'
 import {
   createSubscriptionCheckout,
   createCustomerPortal,
-} from '#app/modules/stripe/queries.server'
+} from '#app/services/stripe/queries.server'
 import { prisma } from '#app/utils/db.server'
 import { getLocaleCurrency } from '#app/utils/misc.server'
 import { INTENTS } from '#app/utils/constants/misc'
