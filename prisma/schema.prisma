@@ -1,0 +1,342 @@
+// Prisma Schema.
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["stripe", "atrim"]
+}
+
+// · · · · · · · · · · · · · · · · · · · · 
+// User Models
+// · · · · · · · · · · · · · · · · · · · · 
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  username     String?       @unique
+  image        UserImage?
+  customerId   String?       @unique
+  subscription Subscription?
+  roles        Role[]
+
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@schema("stripe")  
+}
+
+model UserImage {
+  id          String  @id @default(cuid())
+  altText     String?
+  contentType String
+  blob        Bytes
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@schema("stripe")  
+}
+
+// · · · · · · · · · · · · · · · · · · · · 
+// Role-Based Access Models
+// Implementation based on github.com/epicweb-dev/epic-stack
+// · · · · · · · · · · · · · · · · · · · · 
+
+model Role {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  description String       @default("")
+  users       User[]
+  permissions Permission[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@schema("stripe")  
+}
+
+model Permission {
+  id          String @id @default(cuid())
+  entity      String // E.g. user, admin.
+  action      String // E.g. create, read, update, delete
+  access      String // E.g. own or any
+  description String @default("")
+  roles       Role[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([action, entity, access])
+
+  @@schema("stripe")  
+}
+
+// · · · · · · · · · · · · · · · · · · · · 
+// Subscription Models
+// · · · · · · · · · · · · · · · · · · · · 
+
+model Plan {
+  id            String         @id @unique
+  name          String
+  description   String?
+  active        Boolean?       @default(true)
+  limits        PlanLimit?  
+  prices        Price[]
+  subscriptions Subscription[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@schema("stripe")  
+}
+
+// Plan limits are used to describe the limits available to a plan.
+model PlanLimit {
+  id     String @id @default(cuid())
+  plan   Plan   @relation(fields: [planId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  planId String @unique
+
+  // Here you can define your own limits.
+  // For example, you could have a limit on the number of items a user can create.
+  maxItems Int @default(0)
+
+  @@schema("stripe")
+}
+
+model Price {
+  id     String @id @unique // Managed by Stripe - (Price ID)
+  plan   Plan   @relation(fields: [planId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  planId String
+
+  amount        Int
+  currency      String
+  interval      String
+  subscriptions Subscription[]
+  
+  active        Boolean        @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@schema("stripe")
+}
+
+model Subscription {
+  id     String @id @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
+
+  plan               Plan    @relation(fields: [planId], references: [id])
+  planId             String
+  price              Price   @relation(fields: [priceId], references: [id])
+  priceId            String
+  interval           String
+  status             String
+  currentPeriodStart Int
+  currentPeriodEnd   Int
+  cancelAtPeriodEnd  Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@schema("stripe")
+}
+
+
+// 
+// ---------------- Atrim Types --------------------
+//
+enum Currency {
+  AUD
+  EUR
+  INR
+  SGD
+  USD
+
+  @@schema("atrim")
+}
+
+model Org {
+  id      String @id @default(uuid())
+  lei     String @unique // gleif ID
+  leiData Json   @db.JsonB
+
+  issuedLCs   LC[] @relation(name: "LCFrom") // only for banks
+  receivedLCs LC[] @relation(name: "LCTo") // any org
+
+  issuedInvoices   Invoice[] @relation(name: "InvoiceFrom") // only for sellers
+  receivedInvoices Invoice[] @relation(name: "InvoiceTo") // only for buyers
+
+  issuedBLs   BL[] @relation(name: "BLFrom") // only for shippers
+  receivedBLs BL[] @relation(name: "BLTo") // any org
+
+  lcPayAppsAsApplicant   LCPaymentApplication[] @relation(name: "LCApplicant") // only for buyers
+  lcPayAppsAsBeneficiery LCPaymentApplication[] @relation(name: "LCBeneficiery") // only for sellers
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([lei])
+  @@schema("atrim")
+}
+
+model LC {
+  id        String   @id @default(uuid()) // aka DocumentaryCreditNo
+  amount    Float
+  currency  Currency @default(USD)
+  validFrom DateTime
+  validTo   DateTime
+
+  LCFrom   Org    @relation(fields: [issuedBy], references: [id], name: "LCFrom")
+  LCTo     Org    @relation(fields: [issuedTo], references: [id], name: "LCTo")
+  issuedBy String // the Bank
+  issuedTo String // the Bank's customer
+
+  paymentApplications LCPaymentApplication[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([issuedBy, issuedTo])
+  @@index([createdAt])
+  @@schema("atrim")
+}
+
+model Invoice {
+  id   String   @id @unique // invoice Number
+  date DateTime // invoice date
+
+  InvoiceFrom Org    @relation(fields: [issuedBy], references: [id], name: "InvoiceFrom")
+  InvoiceTo   Org    @relation(fields: [issuedTo], references: [id], name: "InvoiceTo")
+  issuedBy    String
+  issuedTo    String
+
+  items               InvoiceItem[]
+  paymentApplications LCPaymentApplication[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([issuedBy, issuedTo])
+  @@index([date])
+  @@schema("atrim")
+}
+
+model InvoiceItem {
+  id        Int    @id @default(autoincrement()) // row id
+  goodsId   String
+  goodsDesc String
+  hsCode    String // Commodity Code, Export Code
+  quantity  Float
+
+  unitPrice         Float // e.g. USD3 per KG
+  unitPriceCurrency Currency
+  unitPriceUOM      String // unit of measurement for the unit-price e.g Barrel of Oil
+
+  weight    Float
+  weightUOM String
+  volume    Float
+  volumeUOM String
+
+  tenor        String
+  paymentTerms String
+
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+  invoiceId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([invoiceId])
+  @@schema("atrim")
+}
+
+model BL {
+  id String @id @default(uuid()) // aka DocumentaryCreditNo
+
+  portOfLoading       String
+  portOfDischarge     String
+  transhipmentCountry String
+
+  vessel   Vessel @relation(fields: [vesselId], references: [id])
+  vesselId String
+
+  BLFrom   Org    @relation(fields: [issuedBy], references: [id], name: "BLFrom")
+  BLTo     Org    @relation(fields: [issuedTo], references: [id], name: "BLTo")
+  issuedBy String // Vessel owner ?
+  issuedTo String // consignee
+
+  LCPaymentAppBLItem LCPaymentAppBLItem?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([issuedBy, issuedTo])
+  @@index([portOfLoading])
+  @@index([portOfDischarge])
+  @@index([vesselId])
+  @@index([createdAt])
+  @@schema("atrim")
+}
+
+model Vessel {
+  id   String @id @default(uuid())
+  name String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  BLs BL[]
+
+  @@index([name])
+  @@schema("atrim")
+}
+
+model LCPaymentApplication {
+  id String @id @default(uuid())
+
+  applicantId   String
+  beneficieryId String
+  lcId          String
+  invoiceId     String               @unique // TODO: to allow multiple BLs of same invoice, should this be unique or not?
+  blItems       LCPaymentAppBLItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  applicant   Org     @relation(fields: [applicantId], references: [id], name: "LCApplicant")
+  beneficiery Org     @relation(fields: [beneficieryId], references: [id], name: "LCBeneficiery")
+  lc          LC      @relation(fields: [lcId], references: [id])
+  invoice     Invoice @relation(fields: [invoiceId], references: [id])
+
+  @@index([invoiceId])
+  @@index([applicantId, beneficieryId])
+  @@index([lcId])
+  @@index([createdAt])
+  @@schema("atrim")
+}
+
+model LCPaymentAppBLItem {
+  id Int @default(autoincrement())
+
+  paymentApplication LCPaymentApplication @relation(fields: [applicationId], references: [id])
+  applicationId      String
+
+  bl   BL     @relation(fields: [blId], references: [id])
+  blId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([applicationId, blId, createdAt])
+  @@schema("atrim")
+}
