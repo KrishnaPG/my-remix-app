@@ -65,13 +65,23 @@
   }
 }
 
-body {
-  font-size: 14px;
-  font-weight: 400;
-  font-family: system-ui, sans-serif;
+html {
   scroll-behavior: smooth;
+}
+
+body {
+  color: #e5e7eb;
+  background-color: #0d1117;
+  height: 100dvh;
+  width: 100dvw;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
 a {
@@ -91,9 +101,34 @@ img {
   -o-user-drag: none;
 }
 
+/*
+* Custom Scrollbar.
+*/
+:root {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+/*
+* Custom Selection Background.
+*/
+::-moz-selection {
+  color: hsl(var(--secondary-foreground)); /* #fff; */
+  background: hsl(var(--accent)); /* #7b61ff; */
+}
+
 ::selection {
-  color: hsl(var(--secondary-foreground));
-  background-color: hsl(var(--accent));
+  color: hsl(var(--secondary-foreground)); /* #fff; */
+  background: hsl(var(--accent)); /* #7b61ff; */
 }
 
 /*
@@ -135,4 +170,113 @@ img {
   background-size: 30px 30px;
   background-image: linear-gradient(90deg, var(--muted-grid) 1px, transparent 0),
     linear-gradient(180deg, var(--muted-grid) 1px, transparent 0);
+}
+
+
+/*
+* Custom Background.
+*/
+.blobs {
+  z-index: -1;
+  max-width: 640px;
+  background-image: radial-gradient(at 27% 37%, #000 0, transparent 0),
+    radial-gradient(at 97% 21%, #8b5cf6 0, transparent 50%),
+    radial-gradient(at 52% 99%, #6f16ff 0, transparent 50%),
+    radial-gradient(at 10% 29%, #8b5cf6 0, transparent 50%),
+    radial-gradient(at 97% 96%, #000 0, transparent 50%),
+    radial-gradient(at 33% 50%, #000 0, transparent 50%),
+    radial-gradient(at 79% 53%, #000 0, transparent 50%);
+  position: absolute;
+  content: '';
+  width: 50%;
+  height: 50%;
+  filter: blur(100px) saturate(150%);
+  top: 25%;
+  opacity: 0.4;
+}
+
+/*
+* Animations.
+*/
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+
+  50% {
+    transform: translatey(-20px);
+  }
+
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.float {
+  animation-name: float;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.LoadingMsg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  @keyframes animloader {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  &::before {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.2rem;
+    margin-right: 0.25rem;
+    background-color: hsl(36deg 100% 50%);
+    display: inline-block;
+    border-radius: 50%;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px 0px;
+    animation: animloader 2s ease-out infinite;
+  }
+}
+
+/** Font definitions **/
+@font-face {
+  font-family: 'ProFontWindows';
+  src: url('/assets/fonts/pro-font-windows/ProFontWindows-webfont.woff') format('woff'),
+    url('/assets/fonts/pro-font-windows/ProFontWindows-webfont.ttf') format('truetype')
 }

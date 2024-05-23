@@ -55,14 +55,14 @@ app.use(
           Boolean,
         ),
         // Defines which origins can serve fonts to your site.
-        'font-src': ["'self'"],
+        'font-src': ["'self'", 'https://fonts.gstatic.com'],
         // Specifies origins allowed to be embedded as frames.
         'frame-src': ["'self'"],
         // Determines allowed sources for images.
         'img-src': ["'self'", 'data:'],
         // Sets restrictions on sources for <script> elements.
         'script-src': [
-          "'strict-dynamic'",
+          // "'strict-dynamic'",
           "'self'",
           (_, res) => `'nonce-${res.locals.cspNonce}'`,
         ],

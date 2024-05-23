@@ -28,7 +28,10 @@ import { ClientHintCheck } from '#app/components/misc/client-hints'
 import { GenericErrorBoundary } from '#app/components/misc/error-boundary'
 import i18nServer, { localeCookie } from '#app/services/i18n/i18n.server'
 
-import RootCSS from './root.css?url'
+//Ref: https://github.com/sergiodxa/remix-utils?tab=readme-ov-file#external-scripts
+import { ExternalScripts } from 'remix-utils/external-scripts'
+
+import TailwindCSS from './root.css?url'
 
 export const handle = { i18n: ['translation'] }
 
@@ -43,7 +46,11 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 }
 
 export const links: LinksFunction = () => {
-  return [{ rel: 'stylesheet', href: RootCSS }]
+  return [
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossOrigin: 'anonymous' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+    { rel: 'stylesheet', href: TailwindCSS },
+  ]
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -111,12 +118,36 @@ function Document({
         <ClientHintCheck nonce={nonce} />
         <Meta />
         <Links />
+        <script src="/settings.js"></script>
       </head>
       <body className="h-auto w-full">
         {children}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
         <Toaster closeButton position="bottom-center" theme={theme} />
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Michroma&family=Press+Start+2P&display=swap"
+          rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+          rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap"
+          rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@0;1&display=swap"
+          rel="stylesheet"></link>
       </body>
     </html>
   )

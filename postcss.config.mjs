@@ -5,5 +5,6 @@ export default {
     'tailwindcss/nesting': {},
     tailwindcss: {},
     autoprefixer: {},
+    'postcss-antd-fixes': {},
   },
 }

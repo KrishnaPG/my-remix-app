@@ -1,0 +1,41 @@
+Startup Description:
+------------------------------
+Medical AI Startup developing an AI-driven Clinical Decision Support System (CDSS) platform delivered as Software-as-a-Service (SaaS). 
+
+Our platform provides decision support to the Clinicians at the point-of-care. It leverages AI  to offer real-time, evidence-based, patient-specific clinical insights that seamlessly integrate with existing Electronic Health Record (EHR) systems. Our standards-based integration, such as FHIR, eliminates the need for costly custom integrations and overcomes the limitations of static rule based CDSS solutions.
+
+Value Proposition:
+ 1. Improved Clinical Outcomes: We empower clinicians with AI-powered insights, leading to better decision-making and potentially improved patient outcomes.
+
+ 2. Reduced Medical Errors: Our platform helps identify potential risks and adverse events early, promoting patient safety.
+
+ 3.  Increased Clinician Efficiency: We streamline workflows and reduce alert fatigue, allowing clinicians to focus on delivering optimal care.
+
+ 4. Cost-Effectiveness: Our SaaS model eliminates the need for costly custom integrations and offers a scalable solution for healthcare providers.
+
+USP:
+------------------------------
+1. Seamless EHR Integration: Unlike traditional CDSS solutions that often require complex and costly integrations, our platform offers a seamless SaaS model ensuring compatibility with a wide range of existing EHR systems. 
+
+2. Advanced AI Algorithms: Our platform goes beyond static rules-based systems by leveraging cutting-edge AI technology. This enables real-time, dynamic clinical insights that adapt to specific patient data and clinical context, providing a more nuanced and potentially more accurate level of decision support.
+
+3. Customizable Decision Support: Our platform offers the ability to tailor its functionalities to specific workflows and clinical protocols within different healthcare settings. This level of customization ensures that the CDSS is truly integrated with the existing practices and needs of each healthcare provider, maximizing its effectiveness and impact.
+
+Mission Statement:
+-----------------------------
+To advance healthcare delivery by providing accessible and adaptable AI-powered clinical decision support. We aim to empower Clinicians with real-time evidence-based insights, ultimately improving the patient outcomes and contributing to a more sustainable and efficient healthcare system.
+
+To improve healthcare outcomes by providing accessible and adaptable AI-powered clinical decision support to Clinicians.
+
+
+Problem Statement: 
+-----------------------------
+        As per W.H.O., Medication Errors affect 1 out of every 30 patients, and Diagnostic Errors occur in 5 to 20% of all physician-patient encounters.
+
+What is your solution?
+-----------------------------
+We provide AI-powered clinical decision support seamlessly integrated with EHRs, empowering doctors for better patient outcomes & safety.
+
+Why? (Cost to Zero mission)
+-----------------------------
+Falling sick is not just an individual’s problem. Nations crumble when their people are not strong. Cost of cure is a direct burden to the society and the economic growth.

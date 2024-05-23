@@ -1,0 +1,25 @@
+@sessionid = 8a8eb96e-3cce-40d2-9a5a-ca77547dedbe
+
+### HSCode Classification API
+POST https://classifierapi.trademo.com/api/v1/classify
+sessionid:  {{sessionid}}
+
+{
+    "sku": "ABC123",
+    "productTitle": "Cna test",
+    "productDescription": "Black mens summer cotton shirt",
+    "countryOfClassification": "",
+    "tradeDirection": "export",
+    "confidenceThreshold": 0,
+    "numberOfPredictions": 3
+}
+
+### HSCode Classification API
+POST https://classifierapi.trademo.com/api/v1/classify
+sessionid:  {{sessionid}}
+
+{
+    "productTitle": "Cna test",
+    "confidenceThreshold": 25,
+    "numberOfPredictions": 3
+}

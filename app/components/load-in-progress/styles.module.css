@@ -1,0 +1,23 @@
+.loadErrMsg {
+  & .icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.centerInParent {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 6rem;
+
+  &> :global(.ant-spin-nested-loading) {
+    display: flex;
+    flex-grow: 1;
+
+    &>div>:global(.ant-spin) :global(.ant-spin-text) {
+      text-shadow: none;
+    }
+  }
+}

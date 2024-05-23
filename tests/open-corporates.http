@@ -1,0 +1,30 @@
+@token = kW1dxoJIabUV198Lgxq0
+@version = v0.4.8
+
+### API Reference: https://api.opencorporates.com/documentation/API-Reference
+### List the versions
+GET https://api.opencorporates.com/{{version}}/versions?api_token={{token}}
+Content-Type: application/json
+
+### List the jurisdictions
+GET https://api.opencorporates.com/{{version}}/jurisdictions?api_token={{token}}
+
+
+### Match a jurisdiction
+GET https://api.opencorporates.com/{{version}}/jurisdictions/match?q=The+Netherlands&api_token={{token}}
+
+
+### Get Account status
+https://api.opencorporates.com/{{version}}/account_status?api_token={{token}}
+
+
+### Reconcilation API, Reference: https://api.opencorporates.com/documentation/Reconciliation_API_documentation_v0.1.pdf 
+GET https://api.opencorporates.com/{{version}}/reconcile/gb?query=opencorporatres+limited&api_token={{token}}
+
+
+### Search based on LEI
+GET https://api.opencorporates.com/{{version}}/companies/search?identifier_uids=7ZW8QJWVPR4P1J1KQY45&api_token={{token}}
+
+
+### Company details
+GET https://api.opencorporates.com/{{version}}/companies/us_de/3582691?api_token={{token}}

@@ -1,0 +1,20 @@
+.statusHolder {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  /* the icon */
+  &>.statusIcon {
+    &>svg {
+      display: block;
+      height: var(--app-icon-size, 1.5rem);
+      width: var(--app-icon-size, 1.5rem);
+      filter: brightness(var(--app-icon-brightness, 0.5));
+    }
+  }
+
+  &>.statusText {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,11 @@
+.loadErrMsg {
+  & > .icon {
+    margin-right: 0.5rem;
+  }
+}
+
+.center {
+  display: flex;
+	justify-content: center;
+	align-items: center;
+}

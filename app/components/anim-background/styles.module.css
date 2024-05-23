@@ -1,0 +1,10 @@
+.layout {
+  position: absolute;
+  overflow: hidden;
+  inset: 0;
+  display: flex;
+  background: radial-gradient(50% 50% at 50% 50%, #04252B 0%, #002424 0.01%, #001515 100%);
+  min-width: 0;
+  min-height: 0;
+  z-index: -999;
+}

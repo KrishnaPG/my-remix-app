@@ -51,6 +51,7 @@
     "isbot": "^3.8.0",
     "lucide-react": "^0.378.0",
     "morgan": "^1.10.0",
+    "postcss-antd-fixes": "^0.2.0",
     "prisma": "^5.13.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -58,9 +59,10 @@
     "react-i18next": "^14.1.1",
     "remix-auth": "^3.6.0",
     "remix-auth-github": "^1.7.0",
+    "remix-auth-google": "^2.0.0",
     "remix-auth-totp": "^3.3.0",
     "remix-i18next": "^6.1.0",
-    "remix-utils": "7.0.0-pre.4",
+    "remix-utils": "7.6.0",
     "sonner": "^1.4.41",
     "stripe": "^15.5.0",
     "tailwind-merge": "^2.3.0",
@@ -94,7 +96,7 @@
     "vitest": "^1.6.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

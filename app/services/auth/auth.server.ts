@@ -3,6 +3,7 @@ import { redirect } from '@remix-run/node'
 import { Authenticator } from 'remix-auth'
 import { TOTPStrategy } from 'remix-auth-totp'
 import { GitHubStrategy } from 'remix-auth-github'
+import { GoogleStrategy } from 'remix-auth-google'
 import { authSessionStorage } from '#app/services/auth/auth-session.server'
 import { sendAuthEmail } from '#app/services/email/templates/auth-email'
 import { prisma } from '#app/utils/db.server'
@@ -105,6 +106,52 @@ authenticator.use(
         if (!user) throw new Error(ERRORS.AUTH_USER_NOT_CREATED)
       }
 
+      return user
+    },
+  ),
+)
+
+/**
+ * Google - Strategy.
+ */
+authenticator.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      callbackURL: `${HOST_URL}/auth/google/callback`,
+      prompt: 'consent',
+    },
+    async ({ profile }) => {
+      const email = profile._json.email || profile.emails[0].value
+      // Get user from database.
+      let user = await prisma.user.findUnique({
+        where: { email },
+        include: {
+          image: { select: { id: true } },
+          roles: { select: { name: true } },
+        },
+      })
+
+      if (!user) {
+        user = await prisma.user.create({
+          data: {
+            roles: { connect: [{ name: 'user' }] },
+            email,
+          },
+          include: {
+            image: { select: { id: true } },
+            roles: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        })
+        if (!user) throw new Error(ERRORS.AUTH_USER_NOT_CREATED)
+      }
+
+      // Return user as Session.
       return user
     },
   ),

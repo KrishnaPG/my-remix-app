@@ -1,0 +1,11 @@
+.Pass {
+  color: var(--app-clr-pass, green);
+}
+
+.Warn {
+  color: var(--app-clr-warn, yellow);
+}
+
+.Fail {
+  color: var(--app-clr-fail, red);
+}

@@ -1,0 +1,59 @@
+@host = localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbGVtZ2tAZ21haWwuY29tIiwibmFtZSI6IkdLIiwiaWQiOiJjdXNfUDU4MktMN1JlemVDRW0iLCJpYXQiOjE3MTY0MjY4MzUsImV4cCI6MTcxNjUxMzIzNX0.X7lc4OOZO_OnWgRtvC4Jq-ejz-QUQ8nhwltztL_hrUk
+
+### Get a JWT from Social Login Cookie
+GET http://{{host}}/api/getJWT
+Cookie: _session=eyJvYXV0aDI6c3RhdGUiOiJlYTNmMjg1MC1lNjQzLTQxNDktOGM2OS1jZTdmMjU2OWZmYzEiLCJ1c2VyIjp7ImlkIjoiY2xwZ2h2YWtiMDAwMG5zbDB2dmJqMnphdiIsImVtYWlsIjoicGFsZW1na0BnbWFpbC5jb20iLCJuYW1lIjoiR0siLCJjdXN0b21lcklkIjoiY3VzX1A1ODJLTDdSZXplQ0VtIiwiY3JlYXRlZEF0IjoiMjAyMy0xMS0yN1QwNTo1NDozNi43MzFaIiwidXBkYXRlZEF0IjoiMjAyMy0xMS0yN1QwNTo1NDo0NC4wODVaIn0sInN0cmF0ZWd5IjoiZ29vZ2xlIn0%3D.R7XJ6dk1OmRHGYFzwv3tv794g8qOHssDJQAkJcvNIWw
+
+
+### Test the Orgs route: Anonymous access should be rejected
+GET http://{{host}}/api/orgs/
+Authorization: Bearer {{token}}
+
+### Create new org
+POST http://{{host}}/api/orgs/
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "lei": "123",
+  "leiData": { "test": "value"}
+}
+
+### Get Applications List
+GET http://{{host}}/api/applications
+Authorization: Bearer {{token}}
+
+### run analysis
+POST http://{{host}}/api/applications/runAnalysis
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{}
+
+### Test SSE Subscription
+GET http://{{host}}/api/sse
+Authorization: Bearer {{token}}
+
+
+### Anonymous access to dashboard should redirect to login page
+GET http://{{host}}/dashboard/
+
+### API
+GET screening/hs-classify
+Authorization: Bearer {{token}}
+
+###############################################
+### MedAI API
+###############################################
+
+GET http://{{host}}/api/medAi/
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### POST
+POST http://{{host}}/api/medAi/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"in": "hello"}
