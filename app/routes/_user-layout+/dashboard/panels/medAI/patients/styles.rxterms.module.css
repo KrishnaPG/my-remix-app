@@ -1,0 +1,22 @@
+
+.drugSearchBar {
+    padding: 1rem;
+
+  .drugName, .drugStrength, .actions  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .label {
+      margin-right: 0.5rem;
+      & + * {
+        flex-grow: 1;
+      }
+    }
+  }
+  @media (min-width: 988px) {
+    .actions {
+      justify-content: start;
+    }
+  }
+}
+

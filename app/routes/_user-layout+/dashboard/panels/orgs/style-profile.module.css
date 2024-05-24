@@ -1,0 +1,9 @@
+.vertTabText {
+  div[role="tab"] {
+    writing-mode: vertical-lr;
+  }
+}
+
+.entityDetails {
+  margin: 1rem;
+}

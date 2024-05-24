@@ -1,0 +1,197 @@
+.flagResults {
+  --app-clr-pass: hsl(135deg 70% 60% / 80%);
+  --app-clr-fail: hsl(0deg 70% 60% / 80%);
+  --app-clr-warn: darkgoldenrod;
+
+  font-family: var(--app-font-wide-space);
+
+  & .resultCard {
+    --app-icon-size: 1rem;
+    width: fit-content;
+
+    &>.rule {
+      background: linear-gradient(to right, hsl(177.88deg 100% 83.33% / 20%) 0%, hsl(0deg 0% 0%) 80%);
+      color: var(--app-text-color-space-blue);
+      font-family: 'Exo 2';
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      padding: 0.5rem;
+      padding-right: 2rem;
+
+      &>.match {
+        flex-grow: 1;
+        text-align: end;
+      }
+    }
+
+    &>.container {
+      --aug-border-all: 1px;
+      --aug-border-bg: var(--app-text-color-space-blue);
+      --aug-border-opacity: 0.8;
+      background-color: hsl(0, 0%, 8%);
+
+      &>.header {
+        cursor: pointer;
+
+        &:hover {
+          --aug-border-all: 2px;
+          --aug-border-opacity: 1;
+          box-shadow: inset 0 0 1rem 0 var(--aug-border-bg);
+        }
+
+        &>.notes {
+          font-family: var(--app-font-mono-legible);
+          color: var(--app-text-color-space-grey);
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+
+        &>.result {
+          text-align: center;
+          min-width: 6rem;
+
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          /* &>div {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+          } */
+        }
+      }
+
+      &.expanded>.header {
+        background: repeating-linear-gradient(45deg, rgba(170, 255, 252, 0) 0px, rgba(170, 255, 252, 0) 3px, rgba(170, 255, 252, 0.1) 3px, rgba(170, 255, 252, 0.1) 4px),
+          linear-gradient(to bottom, rgba(170, 255, 252, 0.05) 0%, rgba(170, 255, 252, 0.1) 100%);
+      }
+
+
+      &>.details {
+        /* animated height */
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: 0.5s;
+
+        &>div {
+          min-height: 0;
+        }
+      }
+
+      &.expanded>.details {
+        grid-template-rows: 1fr;
+      }
+    }
+
+    &.Fail {
+      &>.rule {
+        color: var(--app-clr-fail);
+        background: linear-gradient(to right, hsl(0deg 100% 83.33% / 20%) 0%, hsl(0deg 0% 0%) 80%);
+      }
+
+      &>.container {
+        --aug-border-bg: var(--app-clr-fail);
+
+        &.expanded>.header {
+          background: repeating-linear-gradient(45deg, hsl(0deg 100% 83% / 0%) 0px, hsl(0deg 100% 83% / 0%) 3px, hsl(0deg 100% 83% / 10%) 3px, hsl(0deg 100% 83% / 10%) 4px),
+            linear-gradient(to bottom, hsl(0deg 100% 83% / 5%) 0%, hsl(0deg 100% 83% / 10%) 100%);
+        }
+      }
+    }
+
+    &.Warn {
+      &>.rule {
+        color: var(--app-clr-warn);
+        background: linear-gradient(to right, hsl(43deg 100% 83.33% / 20%) 0%, hsl(0deg 0% 0%) 80%);
+      }
+
+      &>.container {
+        --aug-border-bg: var(--app-clr-warn);
+
+        &.expanded>.header {
+          background: repeating-linear-gradient(45deg, hsl(43deg 100% 83% / 0%) 0px, hsl(43deg 100% 83% / 0%) 3px, hsl(43deg 100% 83% / 10%) 3px, hsl(43deg 100% 83% / 10%) 4px),
+            linear-gradient(to bottom, hsl(43deg 100% 83% / 5%) 0%, hsl(43deg 100% 83% / 10%) 100%);
+        }
+      }
+    }
+  }
+
+  & .flagResultsTable {
+
+    form {
+      font-family: var(--app-font-form-text);
+
+      :global(.ant-form-item) {
+        :global(.ant-form-item-label)>label {
+          color: cadetblue;
+        }
+
+        :global(input.ant-input) {
+          color: darkcyan;
+        }
+      }
+
+      & * {
+        font-family: inherit;
+      }
+    }
+
+    :global(.ant-pro-table-list-toolbar-title) {
+      color: var(--app-text-color-space-blue);
+      font-family: var(--app-font-wide-space);
+
+      &>div {
+        padding: 1rem;
+        --aug-border-all: 1px;
+
+        & .status {
+          color: burlywood;
+        }
+
+        a.idLink {
+          color: inherit;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    :global(.ant-table-wrapper) {
+      :global(.ant-table) {
+        color: hsl(180 40% 50% / 1);
+        font-size: 1rem;
+
+        :global(.ant-table-thead) {
+          background-color: cadetblue;
+
+          &>tr>th {
+            color: black;
+            background-color: transparent;
+            font-family: var(--app-font-vert-thinText);
+            font-weight: 400;
+            font-size: 1.15rem;
+            text-align: center;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+
+    .selectionAlert {
+      font-family: var(--app-font-mono-legible);
+      & > .count {
+        color: burlywood;
+      }
+    }
+  }
+}
+
+.glowIcon {
+  border: 1px solid;
+  padding: 0.25rem;
+  background-color: blanchedalmond;
+  box-shadow: 0 0 10px 5px;
+  border-radius: 50%;
+}

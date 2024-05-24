@@ -1,0 +1,41 @@
+.patient_photo {
+  & > :global(.ant-card-cover) {
+    display: flex;
+    justify-content: center;
+
+    img.photo {
+      aspect-ratio: 8 / 10;
+      width: 180px;
+      margin-top: 1rem;
+    }    
+  }
+  & > :global(.ant-card-body) {
+    :global(.ant-card-meta-title), :global(.ant-card-meta-description) {
+      display: flex;
+      justify-content: center;
+    }
+    :global(.ant-card-meta-title) {
+      font-family: var(--app-font-form-text);
+      font-size: 1.5rem;
+      color: var(--app-text-color-space-blue);      
+        margin-bottom: 0 !important;
+    }
+  }
+  & > :global(.ant-card-actions) {
+    .demographics {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      
+      font-family: var(--app-font-legible);
+      font-size: 1rem;
+      color: cadetblue;
+      text-transform: capitalize;
+
+      .icon {
+        font-size: 0.875rem;
+        color: var(--app-text-color-space-grey);
+      }
+    }
+  }
+}

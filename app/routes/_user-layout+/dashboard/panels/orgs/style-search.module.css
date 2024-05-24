@@ -1,0 +1,28 @@
+.searchPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.searchBar {
+  --aug-border-all: 1px !important;
+
+  color: var(--app-text-color-space-blue);
+  font-family: var(--app-font-wide-space);
+
+  flex-grow: 0;
+  margin: 1rem;
+  padding: 1rem;
+
+  & .highlight {
+    color: burlywood;
+  }
+
+  form {
+    max-width: 40rem;
+  }
+}
+
+.searchResults {
+  flex-grow: 1;
+}

@@ -1,0 +1,160 @@
+.screeningPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 0.5rem;
+
+  & > :global(.ant-tabs-content-holder) {
+    overflow: auto;
+  }
+
+  & .screeningResults {
+    margin: 1rem;
+    min-height: 4rem;
+
+    & :global(.ant-list).resultList {
+      :global(.ant-list-item) :global(.ant-list-item-meta) {
+        align-items: center;
+        :global(.ant-list-item-meta-title) {
+          font-family: var(--app-font-wide-space);
+          font-size: 2rem;
+        }
+      }
+
+      :global(.ant-list-item) :global(.ant-list-item-extra) {
+        align-self: center;
+        color: darkcyan;
+        font-family: "Exo 2";
+        font-size: 1.25rem;
+        max-width: 20%;
+
+        & .sanctionedBy {
+          text-align: center;
+          & .icon {
+            color: darkslategray;
+            font-size: 3rem;
+          }
+          & .citation {
+            color: var(--app-text-color-space-grey);
+            font-size: 1.125rem;
+          }
+        }
+      }
+
+      :global(.ant-list-footer) {
+        background: linear-gradient(
+          to left,
+          hsl(177.88deg 100% 83.33% / 20%) 0%,
+          hsl(0deg 0% 0%) 20%
+        );
+        color: var(--app-text-color-space-grey);
+        padding-right: 1rem;
+        text-align: right;
+      }
+      :global(.ant-list-header) {
+        background: linear-gradient(
+          to right,
+          hsl(177.88deg 100% 83.33% / 20%) 0%,
+          hsl(0deg 0% 0%) 80%
+        );
+        font-size: 1rem;
+        padding: 0.75rem;
+      }
+
+      & :global(.ant-statistic).match {
+        :global(.ant-statistic-content) {
+          color: var(--app-text-color-space-blue);
+          font-family: "Exo 2";
+          font-size: 1.5rem;
+        }
+      }
+
+      pre.sanctionNotes {
+        background-color: darkred;
+        color: hsl(15 100% 90% / 1);
+        font-family: var(--app-font-mono-legible);
+        font-size: 1rem;
+        margin-top: 1rem;
+        padding: 1rem;
+      }
+
+      div.entityAliases,
+      div.citationLink {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1rem;
+
+        .label {
+          color: cadetblue;
+          margin-right: 1rem;
+        }
+        & > .aliases {
+          flex-grow: 1;
+        }
+        & > .link {
+          color: var(--app-text-color-space-grey);
+          text-decoration: none;
+        }
+      }
+
+      pre {
+        white-space: pre-line; /* css-3 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+      }
+    }
+
+    & .tradeControls {
+      padding: 1rem;
+
+      & .header {
+        font-size: 1.25rem;
+      }      
+
+      & .controlSections {
+          padding-top: 1rem;
+          padding-bottom: 1rem;          
+        & .sectionHeader {
+          color: burlywood;
+          font-family: "Exo 2";
+          font-size: 1rem;
+        }
+      }
+      & .controlCodes {
+        & tbody {
+          & .controlCode {
+            font-family: var(--app-font-wide-space);
+          }
+          & .controlDesc {
+            color: cadetblue;
+            font-family: var(--app-font-form-text);
+            font-size: 1.15rem;
+          }
+        }
+      }
+      & .controllingAuthority {
+        color: var(--app-text-color-space-blue);
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.searchBar {
+  --aug-border-all: 1px !important;
+
+  color: var(--app-text-color-space-blue);
+  font-family: var(--app-font-wide-space);
+
+  flex-grow: 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: inherit;
+
+  & .highlight {
+    color: burlywood;
+  }
+
+  form {
+    margin-top: 1rem;
+  }
+}

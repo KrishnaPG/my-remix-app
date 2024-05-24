@@ -1,0 +1,5 @@
+form#org-add-new {
+  --aug-border-all: 1px;
+  --aug-border-bg: #537f90;
+  --aug-border-opacity: 0.8;
+}

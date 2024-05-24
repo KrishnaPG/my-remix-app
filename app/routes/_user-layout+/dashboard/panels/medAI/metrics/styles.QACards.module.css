@@ -1,0 +1,51 @@
+.QACard {
+  .mark,
+  span.condition,
+  span.drug,
+  span.keyword {
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+    color: black;
+  }
+  span.condition {
+    background-color: hsl(1, 100%, 80%);
+  }
+  span.drug {
+    background-color: hsl(100, 74%, 38%);
+  }
+  span.keyword {
+    background-color: hsl(270, 100%, 85%);
+  }
+
+  .question {
+    margin-bottom: 0.2rem;  
+
+    overflow: hidden;
+    font-size: 1.25rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > * {
+      margin: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .answer {
+    & > * > :global(.ant-pro-card-body) {
+      padding: 0;
+    }
+  }
+}
+
+.comingSoon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 4rem;
+}

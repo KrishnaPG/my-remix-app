@@ -1,0 +1,40 @@
+/* .prediction_container {
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  grid-template-rows: auto;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "patient_photo patient_details question_answer"
+    "model_details model_performance_charts model_performance_kpis"
+    "model_weights model_weights model_weights";
+} */
+
+
+.patient_details {
+  grid-area: patient_details;
+}
+
+.prediction_result {
+  padding: 0;
+}
+
+.question_answer {
+  grid-area: question_answer;
+}
+
+.model_weights {
+  grid-area: model_weights;
+}
+
+.model_performance_charts {
+  grid-area: model_performance_charts;
+}
+
+.model_performance_kpis {
+  grid-area: model_performance_kpis;
+}
+
+.model_details {
+  grid-area: model_details;
+}

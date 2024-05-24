@@ -1,0 +1,80 @@
+.dataTable {
+  form {
+    font-family: var(--app-font-form-text);
+
+    :global(.ant-form-item) {
+      :global(.ant-form-item-label)>label {
+        color: cadetblue;
+      }
+
+      :global(input.ant-input) {
+        color: darkcyan;
+      }
+    }
+
+    & * {
+      font-family: inherit;
+    }
+  }
+
+  :global(.ant-pro-table-list-toolbar-title) {
+    color: var(--app-text-color-space-blue);
+    font-family: var(--app-font-wide-space);
+
+    &>div {
+      padding: 1rem;
+      --aug-border-all: 1px;
+
+      & .status {
+        color: burlywood;
+      }
+    }
+  }
+
+  :global(.ant-table-wrapper) {
+    :global(.ant-table) {
+      color: hsl(180 40% 50% / 1);
+      font-size: 1rem;
+
+      :global(.ant-table-thead) {
+        background-color: cadetblue;
+
+        &>tr>th {
+          color: black;
+          background-color: transparent;
+          font-family: var(--app-font-vert-thinText);
+          font-weight: 400;
+          font-size: 1.15rem;
+          text-align: center;
+          text-transform: uppercase;
+        }
+      }
+
+      tbody {
+        font-family: var(--app-font-form-text);
+
+        .idLink {
+          font-family: var(--app-font-vert-thinText);
+          font-weight: 200;
+        }
+
+        .amount {
+          /* font-family: 'Roboto'; */
+          color: darkcyan;
+          font-size: 0.9rem;
+        }
+
+        .orgName {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .status {
+    --app-clr-pass: hsl(135deg 70% 60% / 80%);
+    --app-clr-fail: hsl(0deg 70% 60% / 80%);
+    --app-clr-warn: darkgoldenrod;
+    --app-icon-size: 1rem;
+  }
+}

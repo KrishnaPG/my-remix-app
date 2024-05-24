@@ -1,0 +1,19 @@
+.ship {
+  margin: 1rem;
+
+  .key {
+    font-family: 'Exo 2';
+  }
+
+  tr:nth-child(even) {
+    background-color: hsl(0deg 0% 18%);
+  }
+
+  tr:nth-child(odd) {
+    background-color: hsl(0deg 0% 30%);
+  }
+}
+
+.forcedFlagNotes{
+  margin: 2rem;
+}

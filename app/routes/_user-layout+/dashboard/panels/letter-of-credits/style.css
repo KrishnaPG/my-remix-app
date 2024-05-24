@@ -1,0 +1,7 @@
+form#frm-lc-add-new {
+  font-family: var(--app-font-form-text);
+  
+  & * {
+    font-family: inherit;
+  }
+}

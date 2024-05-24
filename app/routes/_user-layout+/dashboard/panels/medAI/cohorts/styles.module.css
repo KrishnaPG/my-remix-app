@@ -1,0 +1,88 @@
+.block {
+  display: block;
+}
+
+.hCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.vCenter {
+  display: flex;
+  align-items: center;
+}
+
+.gap05 {
+  margin: 0.5rem;
+}
+
+.dcLoading {
+  height: calc(80vh);
+}
+.dcDashboard {
+  height: calc(80vh);
+
+  & > .dcDashboardItem {
+    & > .dcChart {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      & > :global(.topBar) {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.08);
+        height: 2.5rem;
+        line-height: 1rem;
+
+        & > :global(.title) {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+          padding-bottom: 0;
+          padding-top: 0;
+          margin: 0;
+          display: flex;
+          flex: 1;
+        }
+        :global(.filter) {
+          margin-right: 0.5rem;
+        }
+      }
+
+      & > :global(.number-display) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        font-size: 4rem;
+      }
+
+      & > svg {
+        text {
+          /* color: @text-color;
+          fill: @text-color; */
+        }
+        :global(.box) {
+          circle,
+          line,
+          rect {
+            stroke: #ccc;
+          }
+        }
+      }
+
+      & > :global(.tableContainer) {
+        overflow: auto;
+      }
+    }
+
+    & > .cfPerLoading {
+      height: 100%;
+    }
+    perspective-viewer tbody tr:nth-child(even) td {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}

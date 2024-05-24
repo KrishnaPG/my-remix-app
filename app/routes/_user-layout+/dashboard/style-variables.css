@@ -1,0 +1,22 @@
+body {
+  /* space look font */
+  --app-font-wide-space: "Michroma";
+  /* good for timestamps, button captions, cram long text into small space */
+  --app-font-vert-thinText: "Oswald";
+  /* very legible, good for long text and numbers */
+  --app-font-mono-legible: "Roboto Mono";
+  --app-font-legible: "Roboto";
+
+  /* to be used in forms */
+  --app-font-form-text: "Titillium Web";
+
+  --app-clr-success: hsl(145, 70%, 60%);
+  --app-clr-warning: hsl(30, 96%, 55%);
+  --app-clr-danger: hsl(0, 80%, 60%);
+
+  --app-clr-dimBG: transparent; /* rgb(0 0 0 / 60%); */
+  --app-clr-highlight: hsl(196, 100%, 50%);
+
+  --app-text-color-space-grey: hsl(0deg 0% 60%);
+  --app-text-color-space-blue: hsl(196, 40%, 60%);
+}

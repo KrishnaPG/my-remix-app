@@ -1,0 +1,157 @@
+.patientPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.scenario {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .problem_description {
+    font-family: var(--app-font-mono-legible);
+    font-size: 1rem;
+  }
+  .symptoms,
+  .allergies,
+  .existing_conditions,
+  .previous_medications, .labTests {
+    font-family: var(--app-font-mono-legible);
+    font-size: 1rem;
+    line-height: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    .label {
+      color: var(--app-text-color-space-grey);
+      margin-right: 0.5rem;
+      width: max-content;
+    }
+  }
+  .labTests {
+    display: block;
+    .testResults {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}
+    :global(.ant-tag) {
+      &.symptom,
+      &.allergy,
+      &.existing_condition,
+      &.medication {
+        font-family: var(--app-font-legible);
+        font-size: 1rem;
+        line-height: 2rem;
+      }
+    }
+
+.cdssTip {
+  font-size: 1rem;
+}
+
+/** Tree Styling */
+.follow_up_questions,
+.suggested_lab_tests {
+  color: darkgray;
+  background-color: hsl(0deg 0% 8% / 80%);
+  font-size: 1.1rem;
+
+  &:global(.ant-tree) {
+    background-color: none;
+
+    :global(.ant-tree-node-content-wrapper) {
+      line-height: 2rem;
+    }
+  }
+
+  :global(.ant-tree-title) {
+    font-family: "Exo 2";
+  }
+
+  .header {
+    color: darkcyan;
+    padding: 0.25rem;
+  }
+
+  .label,
+  .answer,
+  .observation {
+    color: darkgray;
+  }
+
+  .question,
+  .test {
+    padding: 0.15rem;
+    color: darkcyan;
+  }
+
+  .inference {
+    color: burlywood;
+  }
+
+  .timestamp,
+  .usage {
+    color: cadetblue;
+  }
+}
+
+.drugAlert {
+  .unsuitable_drug,
+  .adverse_reactions,
+  .alternative, .additional, 
+  .reason {
+    font-family: var(--app-font-mono-legible);
+    font-size: 1rem;
+    .current_drug {
+      opacity: 1;
+    }
+    .alternative_drug {
+      opacity: 1;
+    }
+    .additional_drug {
+      opacity: 1;
+    }
+  }
+  .additional {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    :global(.ant-tag) {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+  .reference {
+    margin-top: 1rem;
+
+    .source {
+      color: burlywood;
+      font-family: 'Exo 2';
+      font-style: italic;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+    .doi {
+      font-family: 'Exo 2';
+      font-style: normal;
+    }
+  }
+}
+
+
+.prescriptionCard {
+  &.title {
+    font-family: var(--app-font-wide-space);
+    font-size: 1rem;
+    color: burlywood;
+  }
+}

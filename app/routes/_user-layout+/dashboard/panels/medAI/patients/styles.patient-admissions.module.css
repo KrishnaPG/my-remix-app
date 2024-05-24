@@ -1,0 +1,31 @@
+
+  .patientData {
+    & :global(.ant-descriptions-item-label) {
+      display: flex;
+      justify-content: flex-end;
+    }
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .admission {
+    margin-bottom: 0.5rem;
+
+    &:global(.ant-pro-card):global(.ant-pro-card-split) > :global(.ant-pro-card-body) {
+      padding-inline: 1.25rem;
+      padding-block: 1.25rem;
+    }
+    .note {
+      margin-bottom: 0.5rem;
+      .timestamp {
+        margin-right: 0.5rem;
+      }
+      & :global(.ant-pro-card-body) {
+        box-shadow: inset 0px 1px 2px 0px #6295a8;
+      }
+      & .ann-container {
+        padding: 0.75rem 1.25rem;
+        /* background-color: @component-background; */
+      }
+    }
+  }

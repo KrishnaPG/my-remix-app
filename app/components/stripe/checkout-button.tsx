@@ -1,7 +1,7 @@
 import type { Plan } from '@prisma/client'
-import type { Interval } from '~/services/stripe/plans'
+import type { Interval } from '#app/services/stripe/plans'
 
-import { PlanId } from '~/services/stripe/plans'
+import { PlanId } from '#app/services/stripe/plans'
 import { useFetcher } from '@remix-run/react'
 
 type CheckoutButtonProps = {

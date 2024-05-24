@@ -1,0 +1,24 @@
+body>.flexlayout__layout,
+body>.flexlayout__floating_window_content {
+  --color-background: transparent;
+  --color-tabset-background: transparent;
+  --color-splitter: rgb(26 26 26 / 20%);
+
+  &:has(> .flexlayout__tab > .dimBG) {
+    /* dim the main view for better contrast*/
+    --color-tabset-background: var(--app-clr-dimBG);
+  }
+
+  &>.flexlayout__tab:has(> footer) {
+    /* make the footer overflow visible on the above*/
+    overflow: visible;
+  }
+}
+
+@supports not selector(:has(a, b)) {
+  body>.flexlayout__layout,
+  body>.flexlayout__floating_window_content {
+    /* dim all view(s) for better contrast*/
+    --color-tabset-background: var(--app-clr-dimBG);
+  }
+}

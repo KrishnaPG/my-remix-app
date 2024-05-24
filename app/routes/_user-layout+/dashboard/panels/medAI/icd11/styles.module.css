@@ -1,0 +1,41 @@
+.ICD11Container {
+  .searchBar {
+    --aug-border-all: 1px !important;
+
+    color: var(--app-text-color-space-blue);
+    font-family: var(--app-font-wide-space);
+    font-size: 1rem;
+
+    flex-grow: 0;
+    margin: 1rem;
+    padding: 1rem;
+
+    & .highlight {
+      color: burlywood;
+    }
+
+    .searchBox {
+      max-width: 40rem;      
+      background-color: inherit;
+      border-color: darkgreen;
+      border-width: 1px;
+      border-style: dashed;
+      --aug-border-all: 1px !important;
+    }
+  }
+
+  .results {
+    margin: 1rem;    
+    background-color: hsl(0 0 96%);
+    :global(.ectComponent) {
+      margin: 0.5rem;
+    }
+  }
+
+  :global(.ectComponent) {
+    ul,
+    :global(.chdistro) {
+      margin-left: 0 !important;
+    }
+  }
+}

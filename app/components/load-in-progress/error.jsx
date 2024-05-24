@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import { WarningOutlined } from '@ant-design/icons';
+import { WarningOutlined } from '@ant-design/icons/dist/index.umd';
 import styles from './styles.module.css';
 
 export default function LoadError(props) {

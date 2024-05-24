@@ -1,0 +1,22 @@
+.drgCodes {
+  display: flex;
+  flex-direction: column;
+  .drgCode {
+    color: darkcyan;
+  }
+}
+
+.dateCol {
+  font-family: var(--app-font-vert-thinText);
+  font-weight: 200;
+  font-size: 0.9rem;
+}
+
+.patientPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
